@@ -14,16 +14,32 @@ class App extends Component {
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
-  handleOnClick(url) {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        const pokemon = new Pokemon(data);
+  handleOnClick(poke) {
+    //fetch(url)
+      //.then(res => res.json())
+      //.then(data => {
+        const pokemon = new Pokemon(poke);
 
-        this.setState({ pokemon  });
+        fetch(pokemon.descriptionUrl)
+        .then(res => res.json())
+        .then(data => {
+          pokemon.description = data.flavor_text_entries[0].flavor_text;
+          this.setState({ pokemon });
+          //console.log(this.state.pokemon);
+        })
+        //this.setState({ pokemon  });
         //console.log(this.state.pokemon);
-      })
+      //})
       .catch(err => console.log(err));
+
+      // fetch(pokemon.descriptionUrl)
+      // .then(res => res.json())
+      // .then(data => {
+      //   pokemon.description = data.;
+      //   this.setState({ pokemon  });
+      //   //console.log(this.state.pokemon);
+      // })
+      //.catch(err => console.log(err));
   }
 
   render () {
@@ -31,6 +47,7 @@ class App extends Component {
       <div className="App">
         <PokeList handleOnClick={this.handleOnClick} />
         <PokeDetail pokemon={this.state.pokemon} />
+        
       </div>
     );
   }

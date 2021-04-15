@@ -44,7 +44,7 @@ class PokeCell extends React.Component {
         return (
             <div>
                 
-                <button onClick={() => this.handleOnClick(this.url)} className="poke-cell">
+                <button onClick={() => this.handleOnClick(pokemon)} className="poke-cell">
                     <div className="poke-name"><h3>{pokemon.name}</h3></div>
                     <div className="poke-image">
                         <img  src={pokemon.sprites.other.dream_world.front_default} alt="sprite" />
